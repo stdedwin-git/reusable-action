@@ -1,0 +1,24 @@
+name: 'Build and Test Java with Maven'
+description: 'A reusable GitHub Action to build and test Java projects using Maven'
+inputs:
+  java-version:
+    description: 'The Java version to use'
+    required: false
+    default: '17'
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout source code
+      uses: actions/checkout@v4
+
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: ${{ inputs.java-version }}
+
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+
+    - name: Run tests with Maven
+      run: mvn test
