@@ -16,17 +16,17 @@ runs:
       with:
         distribution: 'temurin'
         java-version: ${{ inputs.java-version }}
-        run: mvn -B package --file pom.xml
-        shell: bash
-
+    
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+      shell: bash
+    
     - name: Upload build artifact
       uses: actions/upload-artifact@v3
       with:
         name: build-artifact
         path: target/*.jar
-  
-
+    
     - name: Run tests with Maven
-      id: test
       run: mvn test
       shell: bash
