@@ -16,18 +16,10 @@ runs:
       with:
         distribution: 'temurin'
         java-version: ${{ inputs.java-version }}
-
-    - name: Build with Maven
-      id: build
-      run: mvn -B package --file pom.xml
-      shell: bash
+      - run: mvn -B package --file pom.xml
+        shell: bash
 
     - name: Run tests with Maven
       id: test
       run: mvn test
       shell: bash
-
-  outputs:
-    success:
-      description: 'Indicates whether the process was successful'
-      value: ${{ steps.build.outcome == 'success' && steps.test.outcome == 'success' }}
