@@ -24,9 +24,7 @@ runs:
       with:
         name: build-artifact
         path: target/*.jar
-  
-
+    
     - name: Run tests with Maven
-      id: test
       run: mvn test
       shell: bash
