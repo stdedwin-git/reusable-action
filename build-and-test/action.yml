@@ -16,7 +16,7 @@ runs:
       with:
         distribution: 'temurin'
         java-version: ${{ inputs.java-version }}
-      - run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml
         shell: bash
 
     - name: Upload build artifact
